@@ -12,11 +12,11 @@ app.use(function(req,res,next){
     next();
 });
 
-app.get("*",function(req,res){
-    res.render("index");
+app.get("/form",function(req,res){
+   res.render("form"); 
 });
 
-app.post("/run/:algo",function(req,res){
+app.post("/form/verify",function(req,res){
     console.log(req.params.algo,req.body);
     var form = new formidable.IncomingForm();
     form.parse(req,function(err,fields,files){
@@ -43,6 +43,10 @@ app.post("/run/:algo",function(req,res){
     
         });
     });
+});
+
+app.get("*",function(req,res){
+    res.render("index");
 });
 
 
