@@ -1,0 +1,58 @@
+<% include ./partials/header.ejs %>
+    
+    <div class="page-content" style="margin-top:25px;">
+        
+        <div class="container">
+            
+                <form role = "form" action="/run/linear" method="POST" enctype="multipart/form-data">
+                    <div class = "mdl-grid jumbotron">
+                        <div class = "mdl-cell mdl-cell--6-col">
+                            <input type="text" id="reg[buyer]" name="reg[buyer]">
+                        </div>
+                        <div class = "mdl-cell mdl-cell--6-col">
+                            <input type="file" class="data" id="regDataSet0" name="regDataSet0" accept=".jpg , .png">
+                        </div>
+                            
+                        <div class = "mdl-cell mdl-cell--6-col">
+                            <input type="text" class="hello "id="reg[seller]" name="reg[seller]">
+                        </div>
+                        <div class = "mdl-cell mdl-cell--6-col">
+                            <input type="file" class="data" id="regDataSet1" name="regDataSet1" accept=".jpg,.png">
+                        </div>
+                            
+                        <div class = "mdl-cell mdl-cell--6-col">
+                            <input type="text" id="reg[witness]" name="reg[witness]">
+                        </div>
+                        <div class = "mdl-cell mdl-cell--6-col">
+                            <input type="file" class="data" id="regDataSet2" name="regDataSet2" accept=".jpg,.png">
+                        </div>
+                                       
+                        <div class = "mdl-cell mdl-cell--4-col"></div>
+                        <div class = "mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" disabled>Submit</button>
+                        </div>
+                        <div class = "mdl-cell mdl-cell--4-col"></div>
+                    </div>
+                </form>
+            
+            <script>
+                var count=0; 
+                var x = document.getElementsByClassName("data");
+                for(var i = 0;i<x.length;i++){
+                    console.log(i);
+                    x[i].onchange = function(){
+                        var f = this.value.toString().split(".");
+                        var ext = f[f.length - 1];
+                        count++;
+                        if( (ext === "jpg" || ext === "png") && count === 3){
+                                document.querySelector(".mdl-button").disabled = false;
+                        }
+                    };
+                }
+            </script>
+            
+        </div>
+        
+    </div>
+
+<% include ./partials/footer.ejs %>
