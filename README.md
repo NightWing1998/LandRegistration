@@ -1,7 +1,7 @@
 # LandRegistration-BlockEstate
 Currently land registration is centralised system, where an authority may change the data without really having appropriate rights to do that action. A complete decentralised land registration system is not feasible in any sense so we bring the concepts of both together and build an decentralised land registration system where the transactions are executed by an authority after various level of verifications.
 Face and Sign and also fetch and verify data with aadhar.
-Functions:
+*Functions:*
 * *Property transaction*
 * *fetching property Details*
 * *Fetching property owner*
