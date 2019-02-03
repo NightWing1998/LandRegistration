@@ -13,9 +13,10 @@ var express = require('express'),
     session = require('express-session'),
     auth = require('./routes/auth.js'),
     User    = require('./models/user.js'),
+    api     = require("./aadharAPI/api"),
     mongoose = require("mongoose");
     
-mongoose.connect("mongodb://localhost:27017/officer",{useNewUrlParser:true});
+mongoose.connect("mongodb://"+process.env.IP+"/officer",{useNewUrlParser:true});
     
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
@@ -25,23 +26,35 @@ app.use(session({secret: "Shh, its a secret!",
     saveUninitialized: false}));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(api);
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser((user,done)=>{
+    // console.log('serialize user ',user.id);
+    return done(null,user.id);
+});
+
 app.use(function(req,res,next){
     res.locals.isAuthenticated = req.isAuthenticated();
     if(req.isAuthenticated()){
         res.locals.user=req.user;
-        console.log(req.user)
     }
     next();
 });
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
+
+passport.deserializeUser((id,done)=>{
+    // console.log('deserialize user ',id);
+    User.findById(id,(err,user)=>{
+        if(err) console.log(err);
+        return done(null,user);
+    });
+});
 app.use(auth);
 
 
-app.get("/form",/*middle.isLoggedIn,*/function(req,res){
+app.get("/form",middle.isLoggedIn,function(req,res){
     res.render("form");
 });
 
@@ -51,6 +64,7 @@ app.get("/web3",function(req,res){
 
 
 app.get("/image/:id",function(req,res){
+         console.log(req.params.id);
          var options = {
          root: __dirname + '/public/face/',
          dotfiles: 'allow',
@@ -59,7 +73,9 @@ app.get("/image/:id",function(req,res){
             'x-sent': true
             }
         };
-        res.sendfile(req.params.id,options,function(err){
+        
+        // console.log("req params id: ",req);
+        res.sendFile(req.params.id,options,function(err){
             if(err){
                 console.log(err)
             }else{
@@ -69,51 +85,54 @@ app.get("/image/:id",function(req,res){
      })
 
 app.post("/form/verify",function(req,res){
-    console.log(req.params.algo,req.body);
+
     var fotoArray = [],
         responses = [];
     
     var form = new formidable.IncomingForm();
     form.parse(req,function(err,fields,files){
-        if(err) console.log(err);
-        console.log(fields);
+        if(err) throw(err);
+        // console.log(files);
         req.session.buyer=fields['reg[buyer]'];
+        req.session.PIN=fields['reg[PIN]'];
         req.session.seller=fields['reg[seller]'];
         req.session.witness=fields['reg[witness]'];
         fotoArray.push(fields['reg[buyer]']);
         fotoArray.push(fields['reg[seller]']);
         fotoArray.push(fields['reg[witness]']);
         var oldPath = files.regDataSet0.path,
-            newPath = __dirname + "/public/face/"+files.regDataSet0.name;
+            newPath = __dirname + "/public/face/"+fields['reg[buyer]']+".jpg";
         fs.rename(oldPath,newPath,function(err){
             if(err) console.log(err);
             
             oldPath = files.regDataSet1.path;
-            newPath = __dirname + "/public/face/"+files.regDataSet1.name;
+            newPath = __dirname + "/public/face/"+fields['reg[seller]']+".jpg";
             
             fs.rename(oldPath,newPath,function(err){
                 if(err) throw err;
                 
                 oldPath = files.regDataSet2.path;
-                newPath = __dirname + "/public/face/"+files.regDataSet2.name;
+                newPath = __dirname + "/public/face/"+fields['reg[witness]']+".jpg";
             fs.rename(oldPath,newPath,function(err){
                 if(err) throw err;
             // verify
             fotoArray.forEach(function(face){
+                //console.log("face",face);
                 var options = {
                     url: 'https://land-registration-tarunl.c9users.io/aadhar/api/getimage/'+face,
                     method:"GET"
                 };
-                requestp(options).then( (data) => {
+                requestp(options).then( data => {
+                    console.log(data);
                     var image = data.photo;
                     responses.push(veriface(face,image));
                 });    
-            }).then( (data) =>{
-                if(responses.length==3){
+            })
+            if(responses.length==3){
                     var count=-1;
                     responses.forEach(function(response){
                         count++;
-                        if(response===false){
+                        if(response==false){
                             switch(count){
                                 case 0: res.JSON({"error":"Buyer Invalid"});
                                         break;
@@ -123,12 +142,13 @@ app.post("/form/verify",function(req,res){
                                         break;
                             }
                         }else{
-                            res.send("verify aadhar details");
+                            // res.send("verify aadhar details");
+                            res.redirect('/form/callback');
                         }
                     })
                 }
                 
-            });
+            
             
             });
             
@@ -142,7 +162,8 @@ app.get('/form/callback',function(req,res){
     var transactionObject = {
         buyerId : req.session.buyer,
         sellerId : req.session.seller,
-        witnessId : req.session.witness
+        witnessId : req.session.witness,
+        PIN : req.session.PIN
     };
     res.render("transaction",transactionObject);
 });

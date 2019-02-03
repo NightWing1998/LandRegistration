@@ -1,6 +1,8 @@
 <% include ./partials/header.ejs %>
 
     <link rel="stylesheet" href="stylesheets/form.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
     <div class="page-content" style="margin-top:25px;">
         
         <div class="container">
@@ -8,12 +10,15 @@
                 <form role = "form" action="/form/verify" method="POST" enctype="multipart/form-data">
                     <div class = "mdl-grid">
                         
+                        <div class = "mdl-cell mdl-cell--5-col"></div>
+                        <div class = "mdl-cell mdl-cell--3-col">Property Selling Transaction Form</div>
                         <div class = "mdl-cell mdl-cell--4-col"></div>
-                        <div class = "mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input type="text" class="mdl-textfield__input" id="reg[user]" name="reg[user]" required>
+                        <div class = "mdl-cell mdl-cell--6-col" style="padding-top: 20px;padding-left: 50px;">Selling Property Identification Number</div>
+                        <div class = "mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input type="text" class="mdl-textfield__input" id="reg[PIN]" name="reg[PIN]" required>
                             <label class="mdl-textfield__label" for="reg[user]">PIN</label>
                         </div>
-                        <div class = "mdl-cell mdl-cell--4-col"></div>
+                        <div class="mdl-cell mdl-cell--12-col"><hr></div>
                         
                         <div class = "mdl-cell mdl-cell--4-col">
                             <center>Buyer</center>
@@ -56,6 +61,7 @@
                                     <div class="mdl-tooltip" data-mdl-for="tt3">
                                         Upload <strong>file.zip</strong>
                                     </div>
+                                    <span style="display:none;position:relative;top:2.2em;"></span>
                                 </center>
                             </div>
                             <!--</span>-->
@@ -72,6 +78,7 @@
                                     <div class="mdl-tooltip" data-mdl-for="tt4">
                                         Upload <strong>file.zip</strong>
                                     </div>
+                                    <span style="display:none;position:relative;top:2.2em;"></span>
                                 </center>
                             </div>
                             <!--</span>-->
@@ -87,6 +94,7 @@
                                     <div class="mdl-tooltip" data-mdl-for="tt5">
                                         Upload <strong>file.zip</strong>
                                     </div>
+                                    <span style="display:none;position:relative;top:4em;"></span>
                                 </center>
                             </div>
                             <!--</span>-->
@@ -98,7 +106,7 @@
                         
                         <div class = "mdl-cell mdl-cell--3-col"></div>
                         <div class = "mdl-cell mdl-cell--2-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-                            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" disabled>Submit</button>
+                            <button type="submit" id="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" disabled>Submit</button>
                         </div>
                         <div class = "mdl-cell mdl-cell--2-col"></div>
                         <div class = "mdl-cell mdl-cell--2-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
@@ -114,19 +122,38 @@
                 var x = document.getElementsByClassName("data");
                 var upload = document.getElementsByClassName('jumbotron');
                 for(var i = 0;i<x.length;i++){
-                    console.log(i);
-                    upload[i].onclick = function(){.toString()," clicked"
+                    upload[i].onclick = function(){
                         this.parentElement.children[0].click();
                     } 
                     x[i].onchange = function(){
                         var f = this.value.toString().split(".");
                         var ext = f[f.length - 1];
                         count++;
-                        if( (ext === "jpg" || ext === "png") && count === 3){
+                        if( ext === "jpg" || ext === "png"){
+                            console.log(this);
+                            var img = this.parentElement.children[1].children[0].children[2];
+                            img.innerText = f[f.length-2] + f[f.length-1];
+                            img.style = "display:block;position:relative;top:4em;";
+                            var icon = this.parentElement.children[1].children[0].children[0];
+                            var toolTip = this.parentElement.children[1].children[0].children[1];
+                            icon.style="display:none;";
+                            toolTip.style="display:none;";
+                            if(count === 3)
                                 document.querySelector(".mdl-button").disabled = false;
                         }
                     };
                 }
+                
+                // function display(input){
+                //     if (input.files && input.files[0]) {
+                //     var reader = new FileReader();
+                //     reader.onload = function(event) {
+                //         $('#image').attr('src', event.target.result);
+                //         }
+                //     reader.readAsDataURL(input.files[0]);
+                //     }
+                // }
+                
             </script>
             
         </div>

@@ -50,7 +50,7 @@ html{
 }
 
 .container{
-    padding-left: 10%;
+    padding-left: 12%;
     padding-right:10%;
     margin:0;
 }
@@ -70,4 +70,32 @@ html{
     height: 100%;
     border-radius: 4px;
     box-shadow: 0px 1px 2px 0px #eeeeee,0 1px 2px 0 rgba(0,0,0,0.12) !important;
+}
+
+.main.mainone {
+  width: 320px;
+  height: 320px;
+}
+
+.one > .one_title {
+  color: #fff;
+  background:
+    url('https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2018/01/10/104939564-Blockchain_Industry_Thumb_00000.600x337.jpg?v=1515629366');
+        background-size:cover;
+
+}
+
+.two > .two_title {
+  color: #fff;
+  background:
+    url('http://0ztevmk3kfy73v4y4m82-fb-production-content.s3.amazonaws.com/content/68617270657264656e6e697300/K2xoWGgwRnRtVkk9/image_1.jpg');
+        background-size:cover;
+
+}
+
+.three > .three_title {
+  color: #fff;
+  background:
+    url('https://cdn-images-1.medium.com/max/1200/1*A4JfpvOsHQrAu-iFWvLjiA.jpeg') ;
+    background-size:cover;
 }

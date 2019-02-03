@@ -25,15 +25,15 @@ router.post("/register",function(req,res){
            }
            else{
                passport.authenticate("local")(req,res,function(){
-                  res.redirect("/")
-               })
+                  res.redirect("/");
+               });
            }
         });
     });
 })
 
 router.get("/login",function(req,res){
-            res.render("login");
+    res.render("login");
 });
 
 router.post("/login",function(req,res,next){
@@ -44,11 +44,9 @@ router.post("/login",function(req,res,next){
         req.body=fields;
         next();
     });
-},passport.authenticate("local",{
-        successRedirect: "/",
-        failureRedirect: "/login"
-}
-        ),function(req,res){
+},passport.authenticate("local",{failureRedirect: "/login"}),function(req,res){
+    console.log(req.user);
+    res.redirect("/");
 })
 
 router.get("/logout",function(req,res){

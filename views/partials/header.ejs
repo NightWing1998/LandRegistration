@@ -56,18 +56,18 @@
                 </div>
             </header>
             <div class="mdl-layout__drawer">
-                <span class="mdl-layout-title">User-name</span>
-                <nav class="mdl-navigation mdl-layout--small-screen-only">
+                <span class="mdl-layout-title">BlockEstate</span>
+                <span class="mdl-navigation mdl-layout--small-screen-only">
                     <% if( isAuthenticated ){ %>
                         <a class="mdl-navigation__link" href=<%= "/user/" + user._id.toString() %> ><%= user.username %></a>
                         <a class="mdl-navigation__link" href="/logout">Logout</a>
                     <% } else { %>
                         <a class="mdl-navigation__link" href="/auth/google">Login with Google</a>
                     <% } %>
-                </nav>
+                </span>
                 <nav class="mdl-navigation">
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="/form">Property Transaction</a>
+                    <a class="mdl-navigation__link" href="">Contact Us</a>
                 </nav>
             </div>
             

@@ -4,6 +4,8 @@ const express = require('express'),
       fs      = require('fs');
      
     function veriface(firstFace , foundFace){
+        //console.log(foundFace);
+        
         var faces = [];
         var   options={
           uri: 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true&returnFaceAttributes=age,gender',
@@ -13,28 +15,32 @@ const express = require('express'),
               'Ocp-Apim-Subscription-Key': '8eb5ec7aad4d4982a3f0616e14170b0b'
           },
           body: {
-              "url": "https://internship-shivamsansare.c9users.io/image/"+firstFace+".jpg"
+              "url": "https://land-registration-tarunl.c9users.io/image/"+firstFace+".jpg"
           },
           json: true
       };
+      foundFace=firstFace+"api";
+      console.log(foundFace);
+      //console.log(options);
       requestp(options).then(data =>  {
-              console.log(data[0].faceId);
-              faces[0]=data[0].faceId;
-              options={
-          uri: 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true&returnFaceAttributes=age,gender',
-          method: 'POST',
-          headers: {
-              'Content-type': 'application/json',
-              'Ocp-Apim-Subscription-Key': '8eb5ec7aad4d4982a3f0616e14170b0b'
-          },
-          body: {
-              "url": "https://internship-shivamsansare.c9users.io/image/"+foundFace+".jpg"
-          },
-          json: true
-      };
-      requestp(options).then(data => {
-          console.log(data[0].faceId);
-          faces[1]=data[0].faceId;
+          //  console.log(data);
+            faces[0]=data[0].faceId;
+            var options2={
+                uri: 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true&returnFaceAttributes=age,gender',
+                method: 'POST',
+                headers: {
+                  'Content-type': 'application/json',
+                  'Ocp-Apim-Subscription-Key': '8eb5ec7aad4d4982a3f0616e14170b0b'
+                },
+                body: {
+                    "url": "https://land-registration-tarunl.c9users.io/image/"+foundFace+".jpg"
+                },
+                json: true
+            };
+            requestp(options2).then((data1) => {
+                //console.log(data1);
+            console.log(data1[0].faceId)
+          faces[1]=data1[0].faceId;
           console.log(faces)
           faces.forEach(function(face){
               console.log(face);
@@ -54,10 +60,14 @@ const express = require('express'),
                       json: true
                   };
                 requestp(options1).then(data  => {
-                    if(parseInt(data.confiidence)>0.35 && data.isIdentical===true){
-                        return true;
+                    var value;
+                    //console.log(data);
+                    if(parseFloat(data.confidence)>0.35 && data.isIdentical==true){
+                        //value=true;
+                        console.log("true");
                     }else{
-                        return false;
+                        //value=false;
+                        console.log("false");
                     }
                 }).catch(function(err){
                     console.log("requestp options verify",err);
@@ -71,6 +81,8 @@ const express = require('express'),
       .catch(function(err){
           console.log(err);
       })
+    
+        //return value;
     }
     
     module.exports= veriface;

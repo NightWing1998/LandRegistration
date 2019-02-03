@@ -2,8 +2,10 @@
     display:none;
 }
 
-.mdl-button:disabled{
-    opacity:0.5;
+#submit:disabled{
+    /*opacity:0.5;*/
+    background-color :rgba(68,138,255,0.2)!important;
+    color: #fff;
 }
 
 /*.mdl-chip__text{*/

@@ -1,4 +1,76 @@
-var abi = [
+[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "addRegistrationOfficer",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "PIN",
+				"type": "uint256"
+			},
+			{
+				"name": "sellerId",
+				"type": "uint256"
+			},
+			{
+				"name": "buyerId",
+				"type": "uint256"
+			},
+			{
+				"name": "buyerName",
+				"type": "string"
+			},
+			{
+				"name": "newPrice",
+				"type": "uint256"
+			}
+		],
+		"name": "recordPropertyTransaction",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "officerExists",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
 	{
 		"constant": true,
 		"inputs": [
@@ -34,10 +106,6 @@ var abi = [
 		"outputs": [
 			{
 				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
 				"type": "string"
 			},
 			{
@@ -59,33 +127,14 @@ var abi = [
 			{
 				"name": "",
 				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "name",
-				"type": "string"
 			},
-			{
-				"name": "id",
-				"type": "uint256"
-			}
-		],
-		"name": "addRegistrationOfficer",
-		"outputs": [
 			{
 				"name": "",
 				"type": "bool"
 			}
 		],
-		"payable": true,
-		"stateMutability": "payable",
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -110,52 +159,7 @@ var abi = [
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "PIN",
-				"type": "uint256"
-			},
-			{
-				"name": "sellerId",
-				"type": "uint256"
-			},
-			{
-				"name": "buyerId",
-				"type": "uint256"
-			},
-			{
-				"name": "buyerName",
-				"type": "string"
-			}
-		],
-		"name": "recordPropertyTransaction",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "officerExists",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ];
 
-var address = "0x5678ea2ddbddc1f6a80a29768b631f0e7953df11";
+var address = "0x3dcfda5b36d7f3a2bff29db92948862d4ddab49e";
