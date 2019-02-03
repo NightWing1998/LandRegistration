@@ -158,6 +158,6 @@ var abi = [
 	}
 ];
 
-var address = "0x0";
+var address = "0x5678ea2ddbddc1f6a80a29768b631f0e7953df11";
 
 module.export = { abi , address };

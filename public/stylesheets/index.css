@@ -63,3 +63,11 @@ html{
     box-shadow: 0px 2px 4px 0px #11121a,0 2px 10px 0 rgba(0,0,0,0.12) !important;
 }
 
+.jumbotron{
+    box-sizing:border-box;
+    border : 1px solid #6666;
+    width : 100%;
+    height: 100%;
+    border-radius: 4px;
+    box-shadow: 0px 1px 2px 0px #eeeeee,0 1px 2px 0 rgba(0,0,0,0.12) !important;
+}

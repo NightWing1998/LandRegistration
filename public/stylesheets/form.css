@@ -1,0 +1,11 @@
+.data{
+    display:none;
+}
+
+.mdl-button:disabled{
+    opacity:0.5;
+}
+
+/*.mdl-chip__text{*/
+/*    display:none;*/
+/*}*/

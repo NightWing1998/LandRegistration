@@ -1,24 +1,34 @@
 var express = require("express");
 var router  = express.Router(),
+    mongoose=require('mongoose'),
     passport        = require("passport");
-var User =require("../models/user");
+var User =require("../models/user"),
+formidable=require('formidable');
 
+mongoose.connect("mongodb://localhost:27017/officer",{useNewUrlParser:true});
 
 router.get("/register",function(req,res){
     res.render("register");
 });
 
 router.post("/register",function(req,res){
-    User.register(new User({username: req.body.username}),req.body.password, function(err,User){
-       if(err){
-        console.log(err);
-        return res.render("register");
-       }
-       else{
-           passport.authenticate("local")(req,res,function(){
-              res.redirect("/campgrounds")
-           })
-       }
+    console.log(req.body);
+    var form = new formidable.IncomingForm();
+    form.parse(req,function(err,fields,files){
+        if(err) throw err;
+        console.log("fields: ",fields['username'],fields['password']);
+        console.log("files: ",files);
+        User.register(new User({username: fields['username']}),fields['password'], function(err,User){
+           if(err){
+            console.log(err);
+            return res.render("register");
+           }
+           else{
+               passport.authenticate("local")(req,res,function(){
+                  res.redirect("/")
+               })
+           }
+        });
     });
 })
 
@@ -26,8 +36,16 @@ router.get("/login",function(req,res){
             res.render("login");
 });
 
-router.post("/login",passport.authenticate("local",{
-        successRedirect: "/campgrounds",
+router.post("/login",function(req,res,next){
+    var form=new formidable.IncomingForm();
+    form.parse(req,function(err,fields,files){
+        if(err)
+        throw err;
+        req.body=fields;
+        next();
+    });
+},passport.authenticate("local",{
+        successRedirect: "/",
         failureRedirect: "/login"
 }
         ),function(req,res){
@@ -35,11 +53,11 @@ router.post("/login",passport.authenticate("local",{
 
 router.get("/logout",function(req,res){
     req.logout();
-    res.redirect("/campgrounds");
+    res.redirect("/");
 })
 
 router.get("/",function(req,res){
-    res.render("home");
+    res.render("index");
 });
 
 

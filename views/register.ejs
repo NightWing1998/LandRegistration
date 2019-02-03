@@ -1,0 +1,90 @@
+<% include ./partials/header.ejs %>
+
+    <link rel="stylesheet" href="stylesheets/form.css">
+    <div class="page-content" style="margin-top:25px;">
+        
+        <div class="container">
+            
+                <form role = "form" action="/register" method="POST" enctype="multipart/form-data">
+                    <div class = "mdl-grid">
+                        
+                        <!--<div class = "mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">-->
+                        <!--    <label class="mdl-textfield__label" for="reg[buyer]" style="color:black;">Name</label>-->
+                        <!--</div>-->
+                        
+                        <div class = "mdl-cell mdl-cell--3-col"></div>
+                        <div class = "mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input type="text" class="mdl-textfield__input" id="name" name="name" required>
+                            <label class="mdl-textfield__label" for="reg[buyer]">Name</label>
+                        </div>
+                        <div class = "mdl-cell mdl-cell--3-col"></div>
+
+                        
+                        <!--<div class = "mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">-->
+                        <!--    <label class="mdl-textfield__label" for="reg[buyer]" style="color:black;">Email</label>-->
+                        <!--</div>-->
+                        
+                        <div class = "mdl-cell mdl-cell--3-col"></div>
+                        <div class = "mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input type="email" class="mdl-textfield__input"  id="username" name="username" required>
+                            <label class="mdl-textfield__label" for="reg[seller]">Email</label>
+                        </div>
+                        <div class = "mdl-cell mdl-cell--3-col"></div>
+                        <!--<div class = "mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">-->
+                        <!--    <label class="mdl-textfield__label" for="reg[buyer]" style="color:black;">Password</label>-->
+                        <!--</div>-->
+                       
+                        <div class = "mdl-cell mdl-cell--3-col"></div>
+                         <div class = "mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input type="password" class="mdl-textfield__input" id="password" name="password" required>
+                            <label class="mdl-textfield__label" for="reg[witness]">Password</label>
+                        </div>
+                        <div class = "mdl-cell mdl-cell--3-col"></div>
+                        
+                        <!--<div class = "mdl-cell mdl-cell--4-col">-->
+                            <!--<span class="mdl-chip mdl-chip--contact">-->
+                            <!--<span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">A</span>-->
+                        <!--    <input type="file" class="data mdl-chip__text" id="regDataSet0" name="regDataSet0" accept=".jpg , .png">-->
+                            <!-- Rich Tooltip -->
+                        <!--    <div class="jumbotron">-->
+                        <!--        <center>-->
+                        <!--            <div id="tt3" class="icon material-icons">cloud_upload</div>-->
+                        <!--            <div class="mdl-tooltip" data-mdl-for="tt3">-->
+                        <!--                Upload <strong>file.zip</strong>-->
+                        <!--            </div>-->
+                        <!--        </center>-->
+                        <!--    </div>-->
+                            <!--</span>-->
+                        <!--</div>-->
+                            
+                      
+                        <!--<div class = "mdl-cell mdl-cell--4-col">-->
+                            <!--<span class="mdl-chip mdl-chip--contact">-->
+                            <!--<span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">A</span>-->
+                        <!--    <input type="file" class="data mdl-chip__text" id="regDataSet1" name="regDataSet1" accept=".jpg,.png">-->
+                            <!--</span>-->
+                        <!--</div>-->
+                            
+                        <!--<div class = "mdl-cell mdl-cell--4-col">-->
+                            <!--<span class="mdl-chip mdl-chip--contact">-->
+                            <!--<span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">A</span>-->
+                        <!--    <input type="file" class="data mdl-chip__text" id="regDataSet2" name="regDataSet2" accept=".jpg,.png">-->
+                            <!--</span>-->
+                        <!--</div>-->
+                                       
+                        <div class = "mdl-cell mdl-cell--4-col mdl-cell--1-col-phone"></div>
+                        <div class = "mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--1-col-phone">
+                            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised">Submit</button>
+                        </div>
+                        <div class = "mdl-cell mdl-cell--2-col mdl-cell--8-col-tablet mdl-cell--1-col-phone">
+                            <button type="reset" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised">Reset</button>
+                        </div>
+                        <div class = "mdl-cell mdl-cell--4-col mdl-cell--1-col-phone"></div>
+                    </div>
+                </form>
+            
+        </div>
+        
+    </div>
+
+<% include ./partials/footer.ejs %>

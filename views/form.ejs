@@ -1,58 +1,123 @@
 <% include ./partials/header.ejs %>
 
+    <link rel="stylesheet" href="stylesheets/form.css">
     <div class="page-content" style="margin-top:25px;">
         
         <div class="container">
             
                 <form role = "form" action="/form/verify" method="POST" enctype="multipart/form-data">
-                    <div class = "mdl-grid jumbotron">
-                        <div class = "mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input type="text" class="mdl-textfield__input" id="reg[buyer]" name="reg[buyer]">
-                            <label class="mdl-textfield__label" for="reg[buyer]">Buyer Aadhar No.</label>
-                        </div>
-                        <div class = "mdl-cell mdl-cell--6-col">
-                            <span class="mdl-chip mdl-chip--contact">
-                            <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">B</span>
-                                <input type="file" class="data mdl-chip__text" id="regDataSet0" name="regDataSet0" accept=".jpg , .png">
-                            </span>
-                            
-                        </div>
-                            
-                        <div class = "mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input type="text" class="mdl-textfield__input"  id="reg[seller]" name="reg[seller]">
-                            <label class="mdl-textfield__label" for="reg[seller]">Seller Aadhar No.</label>
-                        </div>
-                        <div class = "mdl-cell mdl-cell--6-col">
-                            <span class="mdl-chip mdl-chip--contact">
-                            <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">S</span>
-                            <input type="file" class="data mdl-chip__text" id="regDataSet1" name="regDataSet1" accept=".jpg,.png">
-                            </span>
-                        </div>
-                            
-                        <div class = "mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input type="text" class="mdl-textfield__input" id="reg[witness]" name="reg[witness]">
-                            <label class="mdl-textfield__label" for="reg[witness]">Witness Aadhar No.</label>
-                        </div>
-                        <div class = "mdl-cell mdl-cell--6-col">
-                             <span class="mdl-chip mdl-chip--contact">
-                            <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">W</span>
-                            <input type="file" class="data mdl-chip__text" id="regDataSet2" name="regDataSet2" accept=".jpg,.png">
-                            </span>
-                        </div>
-                                       
+                    <div class = "mdl-grid">
+                        
                         <div class = "mdl-cell mdl-cell--4-col"></div>
-                        <div class = "mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                        <div class = "mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input type="text" class="mdl-textfield__input" id="reg[user]" name="reg[user]" required>
+                            <label class="mdl-textfield__label" for="reg[user]">PIN</label>
+                        </div>
+                        <div class = "mdl-cell mdl-cell--4-col"></div>
+                        
+                        <div class = "mdl-cell mdl-cell--4-col">
+                            <center>Buyer</center>
+                            <hr>
+                        </div>
+                        
+                        <div class = "mdl-cell mdl-cell--4-col">
+                            <center>Seller</center>
+                            <hr>
+                        </div>
+                        
+                        <div class = "mdl-cell mdl-cell--4-col">
+                            <center>Witness</center>
+                            <hr>
+                        </div>
+                        
+                        <div class = "mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input type="text" class="mdl-textfield__input" id="reg[buyer]" name="reg[buyer]">
+                            <label class="mdl-textfield__label" for="reg[buyer]">Aadhar No.</label>
+                        </div>
+                        
+                         <div class = "mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input type="text" class="mdl-textfield__input"  id="reg[seller]" name="reg[seller]">
+                            <label class="mdl-textfield__label" for="reg[seller]">Aadhar No.</label>
+                        </div>
+                        
+                         <div class = "mdl-cell mdl-cell---col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input type="text" class="mdl-textfield__input" id="reg[witness]" name="reg[witness]">
+                            <label class="mdl-textfield__label" for="reg[witness]">Aadhar No.</label>
+                        </div>
+                        
+                        <div class = "mdl-cell mdl-cell--4-col">
+                            <!--<span class="mdl-chip mdl-chip--contact">-->
+                            <!--<span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">A</span>-->
+                            <input type="file" class="data mdl-chip__text" id="regDataSet0" name="regDataSet0" accept=".jpg , .png">
+                            <!-- Rich Tooltip -->
+                            <div class="jumbotron" style="height: 150px;">
+                                <center>
+                                    <div id="tt3" class="icon material-icons" style="position:relative;top:2.2em;">cloud_upload</div>
+                                    <div class="mdl-tooltip" data-mdl-for="tt3">
+                                        Upload <strong>file.zip</strong>
+                                    </div>
+                                </center>
+                            </div>
+                            <!--</span>-->
+                        </div>
+                            
+                      
+                        <div class = "mdl-cell mdl-cell--4-col">
+                            <!--<span class="mdl-chip mdl-chip--contact">-->
+                            <!--<span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">A</span>-->
+                            <input type="file" class="data mdl-chip__text" id="regDataSet1" name="regDataSet1" accept=".jpg,.png">
+                            <div class="jumbotron" style="height: 150px;">
+                                <center>
+                                    <div id="tt4" class="icon material-icons" style="position:relative;top:2.2em;">cloud_upload</div>
+                                    <div class="mdl-tooltip" data-mdl-for="tt4">
+                                        Upload <strong>file.zip</strong>
+                                    </div>
+                                </center>
+                            </div>
+                            <!--</span>-->
+                        </div>
+                            
+                        <div class = "mdl-cell mdl-cell--4-col">
+                            <!--<span class="mdl-chip mdl-chip--contact">-->
+                            <!--<span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">A</span>-->
+                            <input type="file" class="data mdl-chip__text" id="regDataSet2" name="regDataSet2" accept=".jpg,.png">
+                            <div class="jumbotron" style="height: 150px;">
+                                <center>
+                                    <div id="tt5" class="icon material-icons" style="position:relative;top:2.2em;">cloud_upload</div>
+                                    <div class="mdl-tooltip" data-mdl-for="tt5">
+                                        Upload <strong>file.zip</strong>
+                                    </div>
+                                </center>
+                            </div>
+                            <!--</span>-->
+                        </div>
+                        
+                        <div class = "mdl-cell mdl-cell--12-col">
+                            <hr>
+                        </div>
+                        
+                        <div class = "mdl-cell mdl-cell--3-col"></div>
+                        <div class = "mdl-cell mdl-cell--2-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
                             <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" disabled>Submit</button>
                         </div>
-                        <div class = "mdl-cell mdl-cell--4-col"></div>
+                        <div class = "mdl-cell mdl-cell--2-col"></div>
+                        <div class = "mdl-cell mdl-cell--2-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                            <button type="reset" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised">Reset</button>
+                        </div>
+                        <div class = "mdl-cell mdl-cell--3-col"></div>
                     </div>
                 </form>
             
             <script>
+                
                 var count=0; 
                 var x = document.getElementsByClassName("data");
+                var upload = document.getElementsByClassName('jumbotron');
                 for(var i = 0;i<x.length;i++){
                     console.log(i);
+                    upload[i].onclick = function(){.toString()," clicked"
+                        this.parentElement.children[0].click();
+                    } 
                     x[i].onchange = function(){
                         var f = this.value.toString().split(".");
                         var ext = f[f.length - 1];
