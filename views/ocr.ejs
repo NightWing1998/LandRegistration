@@ -1,0 +1,32 @@
+<script>
+var img = new Image;
+var canvas = document.createElement("canvas");
+var can = canvas.getContext("2d");
+var src = "abcd.jpg";
+img.crossOrigin = "Anonymous";
+
+img.onload = function() {
+  canvas.width = img.width;
+  canvas.height = img.height;
+  can.drawImage(img, 0, 0);
+
+  Tesseract.recognize(can)
+    .then(function(result) {
+      document.getElementById("result")
+        .innerText = result.text;
+    });
+}
+
+img.src = src;
+</script>
+
+<html>
+    <head>
+      <script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
+    </head>
+    
+    <body>
+        <img src="abcd.jpg">
+        <div id="result"></div>
+    </body>
+</html>
